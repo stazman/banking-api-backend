@@ -10,10 +10,10 @@ public class Account {
 	
 	public Account() {
 		
-		this.accountId = accountId;
-		this.balance = balance;
-		this.status = status;
-		this.type = type;
+		this.accountId = 0;
+		this.balance = 0;
+		this.status = null;
+		this.type = null;
 	}
 
 
@@ -24,6 +24,16 @@ public class Account {
 
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
+	}
+	
+	
+	public double getBalance() {
+		return balance;
+	}
+
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 
