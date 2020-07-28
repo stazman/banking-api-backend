@@ -1,5 +1,8 @@
 package com.bankingexamples.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
 
 	private int userId; // primary key
@@ -9,16 +12,18 @@ public class User {
 	private String lastName; // not null
 	private String email; // not null
 	private Role role;
+	private Set<Account> accounts; 
 	
 	public User(){
 		
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.role = role;
+		this.userId = 0;
+		this.username = null;
+		this.password = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.email = null;
+		this.role = new Role();
+		this.accounts = new HashSet<Account>();
 		
 	}
 
@@ -77,4 +82,13 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
+	}
+	
 }
