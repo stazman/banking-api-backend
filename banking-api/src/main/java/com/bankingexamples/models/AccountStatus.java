@@ -8,8 +8,8 @@ public class AccountStatus {
 	
 	public AccountStatus() {
 
-		this.statusId = statusId;
-		this.status = status;
+		this.statusId = 0;
+		this.status = null;
 		
 	}
 
