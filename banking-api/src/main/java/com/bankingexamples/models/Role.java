@@ -7,10 +7,10 @@ public class Role {
 	
 	
 	public Role() {
-		this.roleId = roleId;
-		this.role = role;
+		this.roleId = 0;
+		this.role = null;
 	}
-
+	
 
 	public int getRoleId() {
 		return roleId;
