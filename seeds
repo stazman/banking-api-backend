@@ -1,0 +1,31 @@
+INSERT INTO bank_role VALUES (default, 'Admin');
+INSERT INTO bank_role VALUES (default, 'Employee');
+INSERT INTO bank_role VALUES (default, 'Standard');
+INSERT INTO bank_role VALUES (default, 'Premium');
+
+INSERT INTO acct_stat VALUES (default, 'Pending');
+INSERT INTO acct_stat VALUES (default, 'Open');
+INSERT INTO acct_stat VALUES (default, 'Close');
+INSERT INTO acct_stat VALUES (default, 'Denied');
+
+INSERT INTO acct_type VALUES (default, 'Checking');
+INSERT INTO acct_type VALUES (default, 'Savings');
+
+INSERT INTO persn VALUES (default, 'cadistasio@gmail.com', 'Qwijibo$123', 'Christopher', 'Distasio', 'cadistasio@gmail.com', 1);
+INSERT INTO persn VALUES (default, 'bobemployee@gmail.com', 'Bobemployee$123', 'Bob', 'Bobson', 'bobemployee@gmail.com', 2);
+INSERT INTO persn VALUES (default, 'bobstandard@gmail.com', 'Bobstandard$123', 'Bob', 'Bobbington', 'bobstandard@gmail.com', 3);
+INSERT INTO persn VALUES (default, 'bobpremium@gmail.com', 'Bobpremium$123', 'Bob', 'Bobbarillo', 'bobpremium@gmail.com', 4);
+
+INSERT INTO acct VALUES (default, 5296100.00, 1, 1);
+INSERT INTO acct VALUES (default, 1222.22, 2, 2);
+INSERT INTO acct VALUES (default, 333.03, 3, 1);
+INSERT INTO acct VALUES (default, .01, 4, 2);
+
+INSERT INTO persn_acct VALUES (default, 1, 1);
+INSERT INTO persn_acct VALUES (default, 2, 2);
+INSERT INTO persn_acct VALUES (default, 3, 3);
+INSERT INTO persn_acct VALUES (default, 4, 4);
+
+
+
+
