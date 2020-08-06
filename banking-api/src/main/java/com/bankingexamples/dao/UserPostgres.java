@@ -1,5 +1,6 @@
 package com.bankingexamples.dao;
 
+import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ import com.bankingexamples.utilities.ConnectionUtil;
 public class UserPostgres implements UserDAO {
 
 	ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
-	
 
 	public User getUserById(int id) {
 		
@@ -57,35 +57,77 @@ public class UserPostgres implements UserDAO {
 		return u;
 	}
 
-
-	public String getUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getUserByLastName(User lastName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	@Override
 	public String updateUser(User u) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection conn = cu.getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "update persn set usernm = ?, passwd = ?, fst_name = ?, lst_nm = ?, eml = ?"
+					+ "bank_role_id = ? where persn_id = ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, u.getUsername());
+				pstmt.setString(2, u.getPassword());
+				pstmt.setString(3, u.getFirstName());
+				pstmt.setString(4, u.getLastName());
+				pstmt.setString(5, u.getEmail());
+				pstmt.setInt(6, u.getRole().getRoleId());
+				
+				int rowsAffected = pstmt.executeUpdate();
+				
+				if (rowsAffected > 0) {
+					if ((u, conn)) {
+						conn.commit();
+					} else {
+						conn.rollback();
+					}
+				} else {
+					conn.rollback();
+				}
+				
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
 	}
 
-	public boolean deleteUser(User u) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	@Override
+	public User getUserByUsername(String username) {
+		
+		User u = null;
+		
+		try (Connection conn = cu.getConnection()) {
+			String sql = "select persn.id, persn.usernm, persn.passwd, "
+					+ "bank_role_id, bank_role.bank_role as "
+					+ "bank_role from persn join bank_role on "
+					+ "persn.id = bank_role.id where usernm = ? and "
+					+ "passwd = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, username);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				u = new User();
+				u.setUserId(rs.getInt("id"));
+				u.setPassword(rs.getString("passwd"));
+				u.setUsername(rs.getString("usernm"));
+				u.setFirstName(rs.getString("fst_nm"));
+				u.setLastName(rs.getString("lst_nm"));
+				u.setEmail(rs.getString("eml"));
 
-	public Set<User> getUsersByRole(User r) {
-		// TODO Auto-generated method stub
-		return null;
+				
+				Role r = new Role();
+				r.setRoleId(rs.getInt("bank_role_id"));
+				r.setRole(rs.getString("bank_role"));
+				u.setRole(r);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return u;
 	}
-
-	public String getRoleByUser(Role r) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }
