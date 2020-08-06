@@ -7,14 +7,6 @@ public class AdminUserService {
 
 	private AdminUserDAO adminUserDao;
 	
-	
-	public static void main(String[] args) {
-		
-		
-		
-	}
-	
-	
 	public AdminUserService(AdminUserDAO aud) {
 		adminUserDao = aud;
 	}
