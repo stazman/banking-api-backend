@@ -13,6 +13,38 @@
 **** Unused Code ****
 
 
+
+
+ADMINUSERPOSTGRES
+main method for testing
+public static void main(String[] args) {
+		
+		
+		AdminUserPostgres aup = new AdminUserPostgres();
+		
+		User u = new User();
+		
+		u.setFirstName("John");
+		
+		Integer regUser = aup.registerUser(u.getEmail());
+		
+	    System.out.println(regUser);
+	    
+		
+	}
+	
+	
+
+USERDAO
+
+//	public Set<User> getUsersByRole(User r);??? do we need to include???
+//	public Integer createUser (User u);
+//	public String getUserByEmail(String email);
+//	public String getUserByLastName(User lastName);
+//public boolean deleteUser (User u);
+//public String getRoleByUser (Role r);
+
+
 USERSERVICE
 
 //public boolean deleteUser (User u);
