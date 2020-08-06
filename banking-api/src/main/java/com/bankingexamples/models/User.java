@@ -1,8 +1,5 @@
 package com.bankingexamples.models;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class User {
 
 	private Integer userId; // primary key
@@ -12,7 +9,6 @@ public class User {
 	private String lastName; // not null
 	private String email; // not null
 	private Role role;
-	private Set<Account> accounts; 
 	
 	public User(){
 		
@@ -23,8 +19,7 @@ public class User {
 		this.lastName = null;
 		this.email = null;
 		this.role = new Role();
-		this.accounts = new HashSet<Account>();
-		
+
 	}
 
 	public int getUserId() {
@@ -82,27 +77,17 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
-	public Set<Account> getAccounts() {
-		return accounts;
-	}
-
-	public void setAccounts(Set<Account> accounts) {
-		this.accounts = accounts;
-	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((accounts == null) ? 0 : accounts.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -113,11 +98,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (accounts == null) {
-			if (other.accounts != null)
-				return false;
-		} else if (!accounts.equals(other.accounts))
-			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -144,8 +124,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", accounts="
-				+ accounts + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role;
 	}
 	
 }
