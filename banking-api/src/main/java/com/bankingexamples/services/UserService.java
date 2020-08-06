@@ -1,22 +1,23 @@
 package com.bankingexamples.services;
 
-public class UserService {
+import com.bankingexamples.dao.RoleDAO;
+import com.bankingexamples.dao.UserDAO;
+import com.bankingexamples.models.User;
 
-	//not register
-	//login
-	//can update their own info if the id provided matches the id of the current user
-	
-	//owned accounts:
-		//withdrawal
-		//deposit
-		//transfer between all accounts of user
-		//transfer between accounts owned by different users ... if the source account belongs to the current user
-		//can find accounts if the account belongs to the current user
-		//can find accounts by user if the id provided matches the id of the current user ???
-		//can submit an account 
-		//if the account belongs to the current user
-	
+public class UserService { 
+
+	private UserDAO userDao;
+		
+	public UserService(UserDAO ud, RoleDAO rd) {
+		userDao = ud;
+	}
+
+	public User findPersonById(Integer id) {
+		return userDao.getUserById(id);
+	}
+
+	public String updateUser(User u) {
+		return userDao.updateUser(u);	
+	}
+
 }
-
-
-
