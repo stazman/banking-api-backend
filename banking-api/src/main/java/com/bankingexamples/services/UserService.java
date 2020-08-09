@@ -1,6 +1,7 @@
 package com.bankingexamples.services;
 
-import com.bankingexamples.dao.RoleDAO;
+import java.util.Set;
+
 import com.bankingexamples.dao.UserDAO;
 import com.bankingexamples.models.User;
 
@@ -8,7 +9,7 @@ public class UserService {
 
 	private UserDAO userDao;
 		
-	public UserService(UserDAO ud, RoleDAO rd) {
+	public UserService(UserDAO ud) {
 		userDao = ud;
 	}
 
@@ -16,8 +17,12 @@ public class UserService {
 		return userDao.getUserById(id);
 	}
 
-	public String updateUser(User u) {
+	public User updateUser(User u) {
 		return userDao.updateUser(u);	
+	}
+	
+	public Set<User> findAllUsers() {
+		return userDao.getAllUsers();
 	}
 
 }
