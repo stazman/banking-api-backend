@@ -1,11 +1,15 @@
 package com.bankingexamples.dao;
 
+import java.util.Set;
+
 import com.bankingexamples.models.User;
 
 public interface UserDAO {
 
+	User registerUser(User u);
 	public User getUserById(int id);
-	public String updateUser (User u);
-	public User getUserByUsername(String username); 
-	
+	public User getUserByUsername(String username);
+	public Set<User> getAllUsers();
+	public User updateUser (User u);
+
 }
