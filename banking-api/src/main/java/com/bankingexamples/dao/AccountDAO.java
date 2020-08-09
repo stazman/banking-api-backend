@@ -4,15 +4,14 @@ import java.util.Set;
 
 import com.bankingexamples.models.Account;
 import com.bankingexamples.models.AccountStatus;
-import com.bankingexamples.models.AccountType;
 import com.bankingexamples.models.User;
 
 public interface AccountDAO {
 
-	public Integer createAccount(Integer userId, Account acct);
-	public Double getAccountBalanceByAcctId(Integer acctId);
-	public Integer updateAccount(Integer id);
-	public Set<Account> getAccountsByStatus(Account status);
-	public Set<Account> getAccountsByUserId(Integer userId);
+	public Account createAccount(Account acct, User userId);
+	public Account getAccountById(Integer acctId);
+	Set<Account> getAccountsByAccountStatus(AccountStatus acctStatus);
+	Set<Account> getAccountsByUser(User user);
+	public Account updateAccount(Account acct);
 
 }
