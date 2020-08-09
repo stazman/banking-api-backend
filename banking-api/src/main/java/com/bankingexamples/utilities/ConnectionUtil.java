@@ -13,6 +13,8 @@ public class ConnectionUtil {
 	
 	private ConnectionUtil() {
 		
+		properties = new Properties();
+		
 		try {
 			InputStream dbProperties = ConnectionUtil.class.getClassLoader().
 					getResourceAsStream("database.properties");
