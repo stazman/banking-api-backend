@@ -11,7 +11,7 @@ private UserDAO userDao;
 		userDao = ud;
 	}
 	
-	public User registerUser(User u) {
+	public int registerUser(User u) {
 		return userDao.registerUser(u);	
 	}
 	
