@@ -16,7 +16,9 @@ public class UserPostgres implements UserDAO {
 	ConnectionUtil cu = ConnectionUtil.getConnectionUtil();
 
 	@Override
-	public User registerUser(User u) {
+	public Integer registerUser(User u) {
+		
+		Integer userId = 0;
 		
 		try (Connection conn = cu.getConnection()) {
 			
@@ -24,7 +26,7 @@ public class UserPostgres implements UserDAO {
 			
 			String sql = "insert into persn values (default, ?, ?, ?, ?, ?, ?)";
 			
-			String[] keys = {"id"};
+			String[] keys = {"persn_id"};
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql, keys);
 			
@@ -41,18 +43,19 @@ public class UserPostgres implements UserDAO {
 			
 			ResultSet rs = pstmt.getGeneratedKeys();
 
-			if(rs.next()) {
-				u.setUserId(rs.getInt(1)); 
-				return u;
+			if (rs.next()) {
+				userId = rs.getInt(1);
+				conn.commit();
+			} else {
+				conn.rollback();
 			}
-		
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return null;
-		
+		return userId;
 	}
+
 	
 	public User getUserById(int id) {
 		
