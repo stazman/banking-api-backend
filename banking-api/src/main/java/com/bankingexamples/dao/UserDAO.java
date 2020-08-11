@@ -6,7 +6,7 @@ import com.bankingexamples.models.User;
 
 public interface UserDAO {
 
-	User registerUser(User u);
+	public Integer registerUser(User u);
 	public User getUserById(int id);
 	public User getUserByUsername(String username);
 	public Set<User> getAllUsers();
