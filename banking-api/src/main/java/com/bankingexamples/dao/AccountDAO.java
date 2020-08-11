@@ -12,6 +12,7 @@ public interface AccountDAO {
 	public Account getAccountById(Integer acctId);
 	Set<Account> getAccountsByAccountStatus(AccountStatus acctStatus);
 	Set<Account> getAccountsByUser(User user);
+	Set<Account> getAllAccounts();
 	public Account updateAccount(Account acct);
 
 }

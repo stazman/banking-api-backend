@@ -9,7 +9,6 @@ import java.util.Set;
 import com.bankingexamples.models.Account;
 import com.bankingexamples.models.AccountStatus;
 import com.bankingexamples.models.AccountType;
-import com.bankingexamples.models.Role;
 import com.bankingexamples.models.User;
 import com.bankingexamples.utilities.ConnectionUtil;
 
@@ -217,6 +216,43 @@ public class AccountPostgres implements AccountDAO {
 			e.printStackTrace();
 		}
 		return acct;
+	}
+
+
+	@Override
+	public Set<Account> getAllAccounts() {
+		
+		Set<Account> accts = new HashSet<>();
+		
+		try (Connection conn = cu.getConnection()) {
+			
+			String sql = "select * from acct";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Account account = new Account();
+				account.setAccountId(rs.getInt("acct_id"));
+				account.setBalance(rs.getDouble("bal"));
+				
+				AccountStatus status = new AccountStatus();
+				status.setStatus(rs.getString("acct_stat"));
+				status.setStatusId(rs.getInt("acct_stat_id"));
+				account.setStatus(status);
+				
+				AccountType type = new AccountType();
+				type.setType(rs.getString("acct_type_name"));
+				type.setTypeId(rs.getInt("acct_type_id"));
+				account.setType(type);
+				
+				accts.add(account);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return accts;
 	}
 	
 }
