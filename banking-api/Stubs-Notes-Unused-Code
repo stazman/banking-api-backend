@@ -1,12 +1,19 @@
 **** Project Notes ****
 
-test
+Merges branch 'master' of https://github.com/stazman/banking-api
 
 
 
 **** Stubs ****
 
 
+
+
+**** Notable Commits/To be written in Github comments ****
+
+Merges branch 'master' of https://github.com/stazman/banking-api:
+
+	Merged local files with remote repo after failed amend left files untracked on remote
 
 
 
