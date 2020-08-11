@@ -21,8 +21,8 @@ public class UserService {
 		return userDao.updateUser(u);	
 	}
 	
-	public Set<User> findAllUsers() {
-		return userDao.getAllUsers();
+	public User findUserByUsername(String username) {
+		return userDao.getUserByUsername(username);
 	}
 
 }
