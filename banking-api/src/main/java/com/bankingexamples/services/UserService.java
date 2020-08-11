@@ -13,7 +13,7 @@ public class UserService {
 		userDao = ud;
 	}
 
-	public User findPersonById(Integer id) {
+	public User findUserById(Integer id) {
 		return userDao.getUserById(id);
 	}
 
