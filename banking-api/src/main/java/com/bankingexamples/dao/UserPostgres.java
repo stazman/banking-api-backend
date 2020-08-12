@@ -101,7 +101,7 @@ public class UserPostgres implements UserDAO {
 		
 		try (Connection conn = cu.getConnection()) {
 
-			String sql = "select * from bank_user join role on bank_user.role_id = role.role_id where user_name = ?";
+			String sql = "select * from persn join bank_role on persn.bank_role_id = bank_role.bank_role_id where persn.usernm = ?";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, username);
@@ -139,8 +139,8 @@ public class UserPostgres implements UserDAO {
 
 		try {
 			Connection conn = cu.getConnection();
-			String sql = "select user_id, user_name, first_name, last_name, email, role.role_id, role.role_name from "
-			+ "bank_user join role on bank_user.role_id = role.role_id";		
+			String sql = "select persn_id, usernm, fst_nm, lst_nm, eml, bank_role.bank_role_id, bank_role.bank_role from "
+			+ "persn join bank_role on persn.bank_role_id = bank_role.bank_role_id";		
 			Statement stmt = conn.createStatement();
 			
 			ResultSet rs = stmt.executeQuery(sql);
