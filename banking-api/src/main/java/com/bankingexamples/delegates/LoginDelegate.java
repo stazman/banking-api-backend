@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bankingexamples.dao.UserPostgres;
 import com.bankingexamples.models.User;
 import com.bankingexamples.services.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -23,13 +23,9 @@ public class LoginDelegate implements FrontControllerDelegate {
 		
 		UserService us = new UserService(new UserPostgres());
 		String path = (String) req.getAttribute("path");
-		
-//		System.out.println(path == null);
-		
+			
 		if (path == "" || path==null){
-			
-//			System.out.println(req.getMethod());
-			
+					
 			if (req.getMethod().equals("POST")) {
 				
 				String username = req.getParameter("username");
