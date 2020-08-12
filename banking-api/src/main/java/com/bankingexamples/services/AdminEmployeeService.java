@@ -25,5 +25,9 @@ public class AdminEmployeeService {
 	public Set<Account> findAccountsByAccountStatus(AccountStatus acctStatus) {
 		return acctDao.getAccountsByAccountStatus(acctStatus);
 	}
-
+	
+	public Set<Account> findAllAccounts() {
+		return acctDao.getAllAccounts();
+	}
+	
 }
