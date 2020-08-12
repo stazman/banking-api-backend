@@ -14,6 +14,7 @@ import com.bankingexamples.delegates.AdminDelegate;
 import com.bankingexamples.delegates.AdminEmployeeDelegate;
 import com.bankingexamples.delegates.FrontControllerDelegate;
 import com.bankingexamples.delegates.LoginDelegate;
+import com.bankingexamples.delegates.LogoutDelegate;
 import com.bankingexamples.delegates.TransactionDelegate;
 import com.bankingexamples.delegates.UserDelegate;
 import com.bankingexamples.models.User;
@@ -27,7 +28,7 @@ public class RequestHandler {
 		delegateMap = new HashMap<String, FrontControllerDelegate>();
 		
 		delegateMap.put("login", new LoginDelegate());
-		delegateMap.put("logout", new LoginDelegate());
+		delegateMap.put("logout", new LogoutDelegate());
 		delegateMap.put("register", new AdminDelegate());
 		delegateMap.put("adminEmployee", new AdminEmployeeDelegate());
 		delegateMap.put("users", new UserDelegate());
@@ -76,7 +77,6 @@ public class RequestHandler {
 		return delegateMap.get(uriString.toString());
 	}
 }
-
 
 
 
