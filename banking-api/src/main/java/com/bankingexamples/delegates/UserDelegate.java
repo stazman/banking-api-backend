@@ -26,27 +26,35 @@ public class UserDelegate implements FrontControllerDelegate {
 		
 		User user = null;
 		
-		switch (req.getMethod()) {		
+		User thisUser = (User) req.getSession().getAttribute("user");
 		
+		if (path.contains("users") && (thisUser.equals(userId) || thisUser.getRole().toString() == "Admin" || thisUser.getRole().toString() == "Employee")) { 
+			switch (req.getMethod()) {
+			
 			case "GET":
-				user = uServ.findUserById(userId);
+				
+				user = uServ.findUserById(userId); //3
+			
 				if (user != null) 
 					resp.getWriter().write(om.writeValueAsString(user));
 				else
 					resp.sendError(404, "User not found.");
 				break;
-				
+			
 			case "PUT":
 				
 				req.getSession().getAttribute("user");
 									
 				user = om.readValue(req.getInputStream(), User.class);
-					uServ.updateUser(user);
+				
+					uServ.updateUser(user); //2
+					
 					resp.getWriter().write(om.writeValueAsString(user));
 				
 					resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 				}
 
-	}			
+		}			
+	}
 }
 
