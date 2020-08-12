@@ -12,12 +12,13 @@ public class LogoutDelegate implements FrontControllerDelegate {
 
 	@Override
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		if ("DELETE".equals(req.getMethod())) {
+
+		if ("DELETE".equals(req.getMethod())) {			
 			
 			if(req.getSession().getAttribute("user") != null) {
 				
-				resp.getWriter().write("You have successfully logged out " + ((User) req.getSession().getAttribute("user")).getUsername());
+				resp.getWriter().write("You have successfully logged out.");
+				
 				req.getSession().invalidate();
 				
 			} else {
@@ -25,7 +26,7 @@ public class LogoutDelegate implements FrontControllerDelegate {
 				resp.sendError(400, "There was no user logged into the session");
 			}
 			
-		}else {
+		} else {
 			
 			resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);}
 
