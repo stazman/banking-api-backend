@@ -111,6 +111,7 @@ public class UserPostgres implements UserDAO {
 			if (rs.next()) {
 				User u = new User();
 				u.setUserId(rs.getInt("persn_id"));
+				u.setUsername(rs.getString("usernm"));
 				u.setPassword(rs.getString("passwd"));
 				u.setFirstName(rs.getString("fst_nm"));
 				u.setLastName(rs.getString("lst_nm"));
