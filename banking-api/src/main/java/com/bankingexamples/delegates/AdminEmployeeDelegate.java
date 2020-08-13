@@ -2,8 +2,6 @@ package com.bankingexamples.delegates;
 
 import java.io.IOException;
 import java.util.Set;
-//import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,39 +25,44 @@ public class AdminEmployeeDelegate implements FrontControllerDelegate {
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String path = (String) req.getAttribute("path");
+   
+	    User thisUser = (User) req.getSession().getAttribute("user");
+	    
+		if ("Admin".equals(thisUser.getRole().getRole().toString()) || "Employee".equals(thisUser.getRole().getRole().toString())){
 
-	    boolean b = Pattern.matches("accounts+[\\d]", path);  
-		
-	     if ("GET".equals(req.getMethod())) {
+			if ("GET".equals(req.getMethod())) {
 			
-			if (path.contains("users")) {
-				
-				Set<User> users = aes.findAllUsers();
+				if (path.contains("users")) {
+									
+					Set<User> users = aes.findAllUsers();
 					
-				resp.getWriter().write(om.writeValueAsString(users));					
-			
+					resp.getWriter().write(om.writeValueAsString(users));
 
-			} else if (b){ 
+				} else if (path.contains("status")) { 
 				
-				AccountStatus acctStat = (AccountStatus) req.getAttribute("accountStatus");
+					AccountStatus acctStat = (AccountStatus) req.getAttribute("accountStatus");
 			
-				Set<Account> accts = aes.findAccountsByAccountStatus(acctStat);
+					Set<Account> accts = aes.findAccountsByAccountStatus(acctStat);
 				
-				resp.getWriter().write(om.writeValueAsString(accts));
+					resp.getWriter().write(om.writeValueAsString(accts));
 						
-		    	
+				} else {
+				
+					Set<Account> accts = aes.findAllAccounts();
+				
+					resp.getWriter().write(om.writeValueAsString(accts));
+				
+				}
+			
 			} else {
-				
-				Set<Account> accts = aes.findAllAccounts();
-				
-				resp.getWriter().write(om.writeValueAsString(accts));
-				
+						
+				resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			}
-			
+						
 		} else {
-						
-			resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-						
+			
+			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			
 		}
 			
 	}
