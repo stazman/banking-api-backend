@@ -28,7 +28,7 @@ public class RequestHandler {
 		delegateMap.put("login", new LoginDelegate());
 		delegateMap.put("logout", new LogoutDelegate());
 		delegateMap.put("register", new AdminDelegate());
-		delegateMap.put("employee", new AdminEmployeeDelegate());
+		delegateMap.put("adminemployee", new AdminEmployeeDelegate());
 		delegateMap.put("users", new UserDelegate());
 		delegateMap.put("transaction", new TransactionDelegate());
 		delegateMap.put("accounts", new AccountDelegate());
@@ -42,8 +42,6 @@ public class RequestHandler {
 		
 		StringBuilder uriString = new StringBuilder(req.getRequestURI());
 		
-		System.out.println(uriString);
-
 		uriString.replace(0, req.getContextPath().length()+1, "");
 
 		if (uriString.indexOf("/") != -1) {
@@ -52,27 +50,6 @@ public class RequestHandler {
 
 		}
 		
-//		System.out.println(uriString);
-		
-//		System.out.println(delegateMap.get(uriString.toString()));
-		
 		return delegateMap.get(uriString.toString());
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
