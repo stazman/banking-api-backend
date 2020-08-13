@@ -1,7 +1,6 @@
 package com.bankingexamples.delegates;
 
 import java.io.IOException;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,10 @@ public class UserDelegate implements FrontControllerDelegate {
 	
 	@Override
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String path = (String) req.getAttribute("path");
+		
+		System.out.println(path);
 		
 		int userId = Integer.valueOf(path);
 		
@@ -28,16 +30,19 @@ public class UserDelegate implements FrontControllerDelegate {
 		
 		User thisUser = (User) req.getSession().getAttribute("user");
 		
-		if (path.contains("users") && (thisUser.equals(userId) || thisUser.getRole().toString() == "Admin" || thisUser.getRole().toString() == "Employee")) { 
+		System.out.println(userId);
+		
+		if (thisUser.getUserId() == userId || "Admin".equals(thisUser.getRole().getRole().toString()) || "Employee".equals(thisUser.getRole().getRole().toString())) { 
+			
 			switch (req.getMethod()) {
 			
 			case "GET":
 				
-				user = uServ.findUserById(userId); //3
+				user = uServ.findUserById(userId);
 			
 				if (user != null) 
 					resp.getWriter().write(om.writeValueAsString(user));
-				else
+				else if (user!=thisUser)
 					resp.sendError(404, "User not found.");
 				break;
 			
@@ -47,14 +52,16 @@ public class UserDelegate implements FrontControllerDelegate {
 									
 				user = om.readValue(req.getInputStream(), User.class);
 				
-					uServ.updateUser(user); //2
+					uServ.updateUser(user);
 					
 					resp.getWriter().write(om.writeValueAsString(user));
-				
-					resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-				}
+		
+			}
 
-		}			
+		} else {
+			
+			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			
+		}
 	}
 }
-
