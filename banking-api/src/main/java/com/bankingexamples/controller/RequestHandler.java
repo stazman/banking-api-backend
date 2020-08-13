@@ -17,8 +17,6 @@ import com.bankingexamples.delegates.LoginDelegate;
 import com.bankingexamples.delegates.LogoutDelegate;
 import com.bankingexamples.delegates.TransactionDelegate;
 import com.bankingexamples.delegates.UserDelegate;
-import com.bankingexamples.models.User;
-import com.bankingexamples.models.Role;
 
 public class RequestHandler {
 	
@@ -30,7 +28,7 @@ public class RequestHandler {
 		delegateMap.put("login", new LoginDelegate());
 		delegateMap.put("logout", new LogoutDelegate());
 		delegateMap.put("register", new AdminDelegate());
-		delegateMap.put("adminEmployee", new AdminEmployeeDelegate());
+		delegateMap.put("employee", new AdminEmployeeDelegate());
 		delegateMap.put("users", new UserDelegate());
 		delegateMap.put("transaction", new TransactionDelegate());
 		delegateMap.put("accounts", new AccountDelegate());
@@ -43,6 +41,8 @@ public class RequestHandler {
 		}
 		
 		StringBuilder uriString = new StringBuilder(req.getRequestURI());
+		
+		System.out.println(uriString);
 
 		uriString.replace(0, req.getContextPath().length()+1, "");
 
@@ -52,27 +52,9 @@ public class RequestHandler {
 
 		}
 		
-		if (!uriString.toString().equals("login") && !uriString.toString().equals("logout")) {
-			
-			if (req.getSession().getAttribute("user")!=null) {
+//		System.out.println(uriString);
 		
-				if (uriString.toString().equals("users")) {
-					
-					User user = (User) req.getSession().getAttribute("user");
-					Role role = user.getRole();
-					
-					return delegateMap.get(role.getRole());
-				}
-				
-				return delegateMap.get(uriString.toString());
-				
-			} else {
-				
-				resp.sendError(401,"The requested action is not permitted");
-				
-				return (r1, r2) -> {};
-			}
-		}
+//		System.out.println(delegateMap.get(uriString.toString()));
 		
 		return delegateMap.get(uriString.toString());
 	}
