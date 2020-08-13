@@ -1,7 +1,5 @@
 package com.bankingexamples.services;
 
-import java.util.Set;
-
 import com.bankingexamples.dao.UserDAO;
 import com.bankingexamples.models.User;
 
@@ -13,7 +11,7 @@ public class UserService {
 		userDao = ud;
 	}
 
-	public User findUserById(Integer id) {
+	public User findUserById(int id) {
 		return userDao.getUserById(id);
 	}
 
