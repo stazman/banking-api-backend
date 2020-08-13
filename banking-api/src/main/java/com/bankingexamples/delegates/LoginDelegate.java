@@ -35,9 +35,15 @@ public class LoginDelegate implements FrontControllerDelegate {
 				
 				if (u.getPassword().equals(password)) {
 					
+//					System.out.println(System.getProperty("username"));
+					
 					req.getSession().setAttribute("user", u);
 					resp.getWriter().write(om.writeValueAsString(u));
-		
+					
+//					User thisUser = (User) req.getSession().getAttribute("user");
+//		
+//					System.out.println(thisUser.getUsername());
+					
 				} else {
 					
 					resp.sendError(401,"Invalid Credentials");
