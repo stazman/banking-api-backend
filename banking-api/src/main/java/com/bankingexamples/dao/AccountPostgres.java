@@ -58,6 +58,7 @@ public class AccountPostgres implements AccountDAO {
 				conn.rollback();
 			}
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		return acct;
@@ -90,7 +91,7 @@ public class AccountPostgres implements AccountDAO {
 				account.setStatus(status);
 				
 				AccountType type = new AccountType();
-				type.setType(rs.getString("acct_type_name"));
+				type.setType(rs.getString("acct_type"));
 				type.setTypeId(rs.getInt("acct_type_id"));
 				account.setType(type);	
 				
@@ -151,19 +152,25 @@ public class AccountPostgres implements AccountDAO {
 	@Override
 	public Set<Account> getAccountsByAccountStatus(AccountStatus acctStatus) {
 		
+		System.out.println(acctStatus);
+		
+		
 		Set<Account> accts = new HashSet<>();
 		
 		try (Connection conn = cu.getConnection()) {
 			
-			String sql = "select acct_id, bal, acct.acct_stat_id, acct_stat, acct.acct_type_id,"
+			String sql = "select acct_id, bal, acct.acct_stat_id, acct_stat, acct.acct_type_id, acct_type"
 					+ " acct_type from acct join acct_stat on acct.acct_stat_id = acct_stat.acct_stat_id"
 					+ "	join acct_type on acct.acct_type_id = acct_type.acct_type_id where acct.acct_stat_id = ?";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
+			System.out.println(acctStatus.getStatusId());
+			
 			pstmt.setInt(1, acctStatus.getStatusId());
 			
 			ResultSet rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				Account account = new Account();
 				account.setAccountId(rs.getInt("acct_id"));
@@ -175,7 +182,7 @@ public class AccountPostgres implements AccountDAO {
 				account.setStatus(status);
 				
 				AccountType type = new AccountType();
-				type.setType(rs.getString("acct_type_name"));
+				type.setType(rs.getString("acct_type"));
 				type.setTypeId(rs.getInt("acct_type_id"));
 				account.setType(type);
 				
@@ -183,6 +190,7 @@ public class AccountPostgres implements AccountDAO {
 			}
 
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		return accts;
@@ -213,6 +221,7 @@ public class AccountPostgres implements AccountDAO {
 			}
 			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		return acct;
@@ -226,11 +235,14 @@ public class AccountPostgres implements AccountDAO {
 		
 		try (Connection conn = cu.getConnection()) {
 			
-			String sql = "select * from acct";
+			String sql = "select acct_id, bal, acct.acct_stat_id, acct_stat, acct.acct_type_id, acct_type from acct "
+					+ "join acct_stat on acct.acct_stat_id = acct_stat.acct_stat_id "
+					+ "join acct_type on acct.acct_type_id = acct_type.acct_type_id;";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			ResultSet rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				Account account = new Account();
 				account.setAccountId(rs.getInt("acct_id"));
@@ -242,7 +254,7 @@ public class AccountPostgres implements AccountDAO {
 				account.setStatus(status);
 				
 				AccountType type = new AccountType();
-				type.setType(rs.getString("acct_type_name"));
+				type.setType(rs.getString("acct_type"));
 				type.setTypeId(rs.getInt("acct_type_id"));
 				account.setType(type);
 				
@@ -250,8 +262,10 @@ public class AccountPostgres implements AccountDAO {
 			}
 
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
+		
 		return accts;
 	}
 	
