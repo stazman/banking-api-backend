@@ -22,83 +22,96 @@ public class AccountDelegate implements FrontControllerDelegate {
 	
 	@Override
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 
 		String path = (String) req.getAttribute("path");
 		
-		if (path == null || path == "") {
-			
-			if ("POST".equals(req.getMethod())) {
+		Integer userId = Integer.valueOf(path);
 				
-				Account newAcct = null;
-				
-				Account acct = (Account) om.readValue(req.getInputStream(), Account.class);
-				
-				User u = (User) om.readValue(req.getInputStream(), User.class);
-				
-				acct.setAccountId(acct.getAccountId());
-				
-				newAcct = as.makeAccount(acct, u);
-				
-				resp.getWriter().write(om.writeValueAsString(acct));
-				
-				resp.setStatus(HttpServletResponse.SC_CREATED);
-				
-			} else if ("PUT".equals(req.getMethod())) {
-				
-				Account updatedAccount = null;
-				
-				req.getSession().getAttribute("account");
-				
-				updatedAccount = om.readValue(req.getInputStream(), Account.class);
-				
-					as.updateAccount(updatedAccount);
-					
-					resp.getWriter().write(om.writeValueAsString(updatedAccount));
-				
-					resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-					
-			} else  {
-				
-				if (path.contains("owner")) {
-					
-					int userId = Integer.valueOf(path);
-					
-					Set<Account> accts = null;
-					
-					User thisUser = (User) req.getSession().getAttribute("user");
-					
-					if (thisUser.equals(userId) || thisUser.getRole().toString() == "Admin" || thisUser.getRole().toString() == "Employee") { 
-						
-					accts = as.findAccountsByUser(thisUser);
-						
+		User thisUser = (User) req.getSession().getAttribute("user");
 
+		
+		if (thisUser.equals(userId) || thisUser.getRole().toString() == "Admin" || thisUser.getRole().toString() == "Employee") { 
+			
+			if (path == null || path == "") {
+		
+				if ("POST".equals(req.getMethod())) {
+				
+					Account newAcct = null;
+					
+					Account acct = (Account) om.readValue(req.getInputStream(), Account.class);
+					
+					User u = (User) om.readValue(req.getInputStream(), User.class);
+					
+					acct.setAccountId(acct.getAccountId());
+					
+					newAcct = as.makeAccount(acct, u);
+					
+					resp.getWriter().write(om.writeValueAsString(acct));
+					
+					resp.setStatus(HttpServletResponse.SC_CREATED);
+					
+				} else if ("PUT".equals(req.getMethod())) {
+					
+					Account updatedAccount = null;
+					
+					req.getSession().getAttribute("account");
+					
+					updatedAccount = om.readValue(req.getInputStream(), Account.class);
+					
+						as.updateAccount(updatedAccount);
+						
+						resp.getWriter().write(om.writeValueAsString(updatedAccount));
+					
+						resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+						
+				} else  {
+					
+					if (path.contains("owner")) {
+						
+						int userId2 = Integer.valueOf(path);
+						
+						Set<Account> accts = null;
+											
+						if (thisUser.equals(userId2) || thisUser.getRole().toString() == "Admin" || thisUser.getRole().toString() == "Employee") { 
+							
+							accts = as.findAccountsByUser(thisUser);
+	
 						} else {
-							
+								
 							resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+								
+						}
+						
+					} else {
+						
+						int acctId = Integer.valueOf(path);
+						
+						Account accts = null;
 							
+						accts = om.readValue(req.getInputStream(), Account.class);
+										
+						accts = as.findAccountById(acctId);
+							
+						if (accts != null) 
+								
+							resp.getWriter().write(om.writeValueAsString(accts));
+								
+						else
+								
+							resp.sendError(404, "Accounts not found for this user.");											
+						
 					}
 					
-				} else {
-					
-					int acctId = Integer.valueOf(path);
-					
-					Account accts = null;
-						
-					accts = om.readValue(req.getInputStream(), Account.class);
-									
-					accts = as.findAccountById(acctId);
-						
-					if (accts != null) 
-							
-						resp.getWriter().write(om.writeValueAsString(accts));
-							
-					else
-							
-						resp.sendError(404, "Accounts not found for this user.");											
-					
 				}
+				
 			}
+			
+		} else {
+			
+			resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 		}
+		
 	}
 }
 
