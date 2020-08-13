@@ -6,8 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bankingexamples.models.User;
-
 public class LogoutDelegate implements FrontControllerDelegate {
 
 	@Override
@@ -24,6 +22,7 @@ public class LogoutDelegate implements FrontControllerDelegate {
 			} else {
 				
 				resp.sendError(400, "There was no user logged into the session");
+				
 			}
 			
 		} else {
