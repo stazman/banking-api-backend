@@ -20,10 +20,8 @@ public class AdminDelegate implements FrontControllerDelegate{
 	
 	@Override
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String path = (String) req.getAttribute("path");
-		
-		
-		System.out.println(path);
 		
 	
 		if (path == null || path.equals("")) {
@@ -43,6 +41,7 @@ public class AdminDelegate implements FrontControllerDelegate{
 						u.setUserId(aServ.registerUser(u));
 					
 						resp.getWriter().write(om.writeValueAsString(u));
+						
 						resp.setStatus(HttpServletResponse.SC_CREATED);
 					
 				} else {
