@@ -49,7 +49,9 @@ public class UserPostgres implements UserDAO {
 			} else {
 				conn.rollback();
 			}
+			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		
@@ -63,7 +65,9 @@ public class UserPostgres implements UserDAO {
 		
 		try (Connection conn = cu.getConnection()) {
 			
-			String sql = "select persn.persn_id, persn.usernm, persn.passwd, persn.fst_nm, persn.lst_nm, persn.eml, (select bank_role.bank_role from bank_role where bank_role.bank_role_id = persn.bank_role_id) from persn where persn_id = ?";
+			String sql = "select persn.persn_id, persn.usernm, persn.passwd, persn.fst_nm, persn.lst_nm, persn.eml, " + 
+					"(select bank_role.bank_role from bank_role where bank_role.bank_role_id = persn.bank_role_id) " + 
+					"from persn where persn_id = ?";
 						
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
@@ -83,6 +87,7 @@ public class UserPostgres implements UserDAO {
 				u.setEmail(rs.getString("eml"));
 				
 				Role r = new Role();
+
 				r.setRole(rs.getString("bank_role"));
 				
 				u.setRole(r);
@@ -90,6 +95,7 @@ public class UserPostgres implements UserDAO {
 			}
 			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		
@@ -104,6 +110,7 @@ public class UserPostgres implements UserDAO {
 			String sql = "select * from persn join bank_role on persn.bank_role_id = bank_role.bank_role_id where persn.usernm = ?";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, username);
 			
 			ResultSet rs = pstmt.executeQuery();
@@ -128,6 +135,7 @@ public class UserPostgres implements UserDAO {
 			}
 			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
 		
@@ -136,12 +144,14 @@ public class UserPostgres implements UserDAO {
 	
 	@Override
 	public Set<User> getAllUsers() {
+		
 		Set<User> users = new HashSet<>();
 
 		try {
 			Connection conn = cu.getConnection();
 			String sql = "select persn_id, usernm, fst_nm, lst_nm, eml, bank_role.bank_role_id, bank_role.bank_role from "
-			+ "persn join bank_role on persn.bank_role_id = bank_role.bank_role_id";		
+			+ "persn join bank_role on persn.bank_role_id = bank_role.bank_role_id";
+			
 			Statement stmt = conn.createStatement();
 			
 			ResultSet rs = stmt.executeQuery(sql);
@@ -150,7 +160,7 @@ public class UserPostgres implements UserDAO {
 
 				User u = new User();
 
-				u.setUserId(rs.getInt("id"));
+				u.setUserId(rs.getInt("persn_id"));
 				u.setUsername(rs.getString("usernm"));
 				u.setFirstName(rs.getString("fst_nm"));
 				u.setLastName(rs.getString("lst_nm"));
@@ -166,6 +176,7 @@ public class UserPostgres implements UserDAO {
 			}
 		
 		}catch(Exception e) {
+			
 			e.printStackTrace();
 		}
 		return users;
@@ -199,6 +210,7 @@ public class UserPostgres implements UserDAO {
 				
 				
 			} catch(Exception e) {
+				
 				e.printStackTrace();
 			}
 			
