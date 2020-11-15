@@ -4,8 +4,12 @@
   <artifactId>banking-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
   <name>BankingAPI</name>
-  
+
     <dependencies>
   	<!-- our JDBC implementation for PostgreSQL -->
 	  	<dependency>
@@ -21,17 +25,17 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.10.5</version>
+			<version>2.12.0-rc1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.9.10.5</version>
+			<version>2.12.0-rc1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.10.5</version>
+			<version>2.12.0-rc1</version>
 		</dependency>
 		<dependency>
 	    	<groupId>junit</groupId>
@@ -40,6 +44,4 @@
 	    	<scope>test</scope>
 		</dependency>
   	</dependencies>
-
-  
 </project>
