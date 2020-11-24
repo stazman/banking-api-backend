@@ -1,0 +1,42 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="banking-api:war exploded">
+    <output-path>$PROJECT_DIR$/target/banking-api-0.0.1-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>banking-api</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="banking-api" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.14" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-catalina:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-el-api:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-api:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jni:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-coyote:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.27" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jaspic-api:9.0.27" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/banking-api-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="banking-api/web/Web" />
+    </root>
+  </artifact>
+</component>
