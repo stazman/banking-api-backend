@@ -6,12 +6,15 @@ import com.bankingexamples.models.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import static org.junit.Assert.assertEquals;
+
+import java.util.logging.Logger;
 
 public class UserServiceTest {
 
     UserDAO ud;
     UserService us;
+
+    private final Logger logger = Logger.getLogger(String.valueOf(UserServiceTest.class));
 
     @Before
     public void testSetup(){
@@ -27,8 +30,7 @@ public class UserServiceTest {
 
         Mockito.when(ud.getUserById(101)).thenReturn(u);
 
-//        assertEquals(101, u.getUserId());
-
+        logger.info("The findUserById() service method test has been run.");
     }
 }
 
