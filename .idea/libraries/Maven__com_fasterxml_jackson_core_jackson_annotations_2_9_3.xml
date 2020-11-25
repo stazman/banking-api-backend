@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.9.3/jackson-annotations-2.9.3-sources.jar!/" />
+      <root url="file://$USER_HOME$/java-tool-tars/apache-log4j-2.14.0-bin" />
     </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/java-tool-tars/apache-log4j-2.14.0-bin" recursive="false" type="SOURCES" />
   </library>
 </component>
