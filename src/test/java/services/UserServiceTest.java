@@ -1,8 +1,9 @@
-package com.bankingexamples.services;
+package services;
 
 import com.bankingexamples.dao.UserDAO;
 import com.bankingexamples.models.Role;
 import com.bankingexamples.models.User;
+import com.bankingexamples.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
