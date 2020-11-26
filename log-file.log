@@ -1,0 +1,74 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.banking-example:banking-api:war:0.0.1-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-surefire-plugin is missing. @ line 34, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ------------------< com.banking-example:banking-api >-------------------
+[INFO] Building BankingAPI 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ banking-api ---
+[INFO] Deleting /Users/christopher_distasio/IdeaProjects/banking-api/target
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.7.7.201606060606:prepare-agent (default) @ banking-api ---
+[INFO] argLine set to -javaagent:/Users/christopher_distasio/.m2/repository/org/jacoco/org.jacoco.agent/0.7.7.201606060606/org.jacoco.agent-0.7.7.201606060606-runtime.jar=destfile=/Users/christopher_distasio/IdeaProjects/banking-api/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ banking-api ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ banking-api ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 32 source files to /Users/christopher_distasio/IdeaProjects/banking-api/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ banking-api ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ banking-api ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 3 source files to /Users/christopher_distasio/IdeaProjects/banking-api/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ banking-api ---
+[INFO] Surefire report directory: /Users/christopher_distasio/IdeaProjects/banking-api/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+OpenJDK 64-Bit Server VM warning: Ignoring option MaxPermSize; support was removed in 8.0
+Running services.UserServiceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.74 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.7.7.201606060606:report (report) @ banking-api ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ banking-api ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [banking-api] in [/Users/christopher_distasio/IdeaProjects/banking-api/target/banking-api-0.0.1-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/Users/christopher_distasio/IdeaProjects/banking-api/src/main/webapp]
+[INFO] Webapp assembled in [149 msecs]
+[INFO] Building war: /Users/christopher_distasio/IdeaProjects/banking-api/target/banking-api-0.0.1-SNAPSHOT.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ banking-api ---
+[INFO] Installing /Users/christopher_distasio/IdeaProjects/banking-api/target/banking-api-0.0.1-SNAPSHOT.war to /Users/christopher_distasio/.m2/repository/com/banking-example/banking-api/0.0.1-SNAPSHOT/banking-api-0.0.1-SNAPSHOT.war
+[INFO] Installing /Users/christopher_distasio/IdeaProjects/banking-api/pom.xml to /Users/christopher_distasio/.m2/repository/com/banking-example/banking-api/0.0.1-SNAPSHOT/banking-api-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.022 s
+[INFO] Finished at: 2020-11-25T15:01:45-06:00
+[INFO] ------------------------------------------------------------------------

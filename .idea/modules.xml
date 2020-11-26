@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/banking-api.iml" filepath="$PROJECT_DIR$/banking-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking-api-backend.iml" filepath="$PROJECT_DIR$/banking-api-backend.iml" />
     </modules>
   </component>
 </project>
