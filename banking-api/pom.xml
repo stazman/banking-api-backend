@@ -4,9 +4,13 @@
   <artifactId>banking-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<sonar.projectKey>stazman_banking-api-backend</sonar.projectKey>
+		<sonar.organization>dreamsourcer</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
   <name>BankingAPI</name>
 

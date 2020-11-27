@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="banking-api-backend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>banking-api-backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="banking-api-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="banking-api-backend:war exploded" />
+    </root>
+  </artifact>
+</component>
