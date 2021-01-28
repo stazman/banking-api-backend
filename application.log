@@ -1,0 +1,5 @@
+2020-12-01 10:10:48 INFO  UserServiceTest:37 - The findUserById() service method test has been run.
+2020-12-01 10:12:48 INFO  UserServiceTest:37 - The findUserById() service method test has been run.
+2020-12-01 10:22:05 INFO  UserServiceTest:39 - The testFindUserById() service method test has been run.
+2020-12-01 10:22:34 INFO  UserServiceTest:39 - The crazy bones service method test has been run.
+2021-01-27 20:32:04 INFO  UserServiceTest:39 - The testFindUserById() service method test has been run.
